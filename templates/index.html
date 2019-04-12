@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HTML5 Demo: getUserMedia (Treehouse Blog)</title>
+  
+  <link rel="stylesheet" href="{{url_for('static',filename='style1.css')}}">
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='http://cdn.jsdelivr.net/jquery.magnific-popup/1.0.0/magnific-popup.css'>
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='recording.css')}}">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="css/waves.css"> -->
+  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:100|Lato|Source+Sans+Pro:200|Titillium+Web:200" rel="stylesheet">
+</head>
+<body>
+  
+    <canvas id="waves" style="bottom:10%"></canvas>
+    <div id="camera" style="display:none">
+      <button id="startButton" style="display:none"> Start </button>
+        <div id="video-container">
+          <video id="preview" width="500" height="350" autoplay ></video> 
+          <div id="timer" style="position: fixed; right: 15px; top: 35%; width: 25%; color: aliceblue;text-align: center; ">
+              <span style="font-family:'Lato', sans-serif;font-weight: 100;font-size: 0.8em; font-style:italic; "> You have </span>
+              <span id="seconds" >30</span>
+              <span id="middle">secs</span>
+              
+              <span style="font-family:'Lato', sans-serif;font-weight: 100;font-size: 0.8em; font-style:italic; "> seconds to answer </span>
+            </div>
+            
+            <div id="buttons" style="display:none">
+              <button id="start">Start</button>
+              <button id="stop">Stop</button>
+              <button id="reset">Reset</button>
+            </div>
+          <a href="#test-popup" class="open-popup-link" style="position: fixed; right: 15px; top: 35%; width: 25%; color: aliceblue; display: none;">Click here to chect your answer</a>
+        </div>
+      <button id="stopButton" style="display:none"> Stop </button>     
+    </div>
+
+   
+    <div class="container">
+        <ul class="nav">
+          <li class="nav__item .nav__item--logo">Silver</li>
+          <div class="nav__links">
+            <li class="nav__item"> </li>
+            <li class="nav__item"> </li>
+            <li class="nav__item"> </li>
+            <li class="nav__item"> </li>
+          </div>
+        </ul>
+        <div class="splash__center">
+            <img src="{{url_for('static',filename='fr.png')}}" alt="Northern Lights" width="100px">
+          <h1 class="splash__title">Bonjour. Hello.</h1>
+          <div class="col-lg-6" >
+              <h1>We're using AI to perform language evaluations.</h1>
+              <h1>Reimagining The Future of French Assessments Using Voice Technology.</h1>
+              <h1>Start your new French assessment experience with us. </h1>
+          </div>
+          
+          <div class="col-lg-6" style="font-family: 'Lato', sans-serif; margin-top: 40px;">
+            
+                <ul class="line">
+                    <li style="  display: inline-block;"><HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1)" width="200px; float:left;" color=white SIZE=1></li>
+                    <li style="  display: inline-block; margin-left: 30px; margin-right: 30px;"><h3 style="float:left;" >Question 1</h3></li>
+                    <li style="  display: inline-block;"><HR style="FILTER: alpha(opacity=0,finishopacity=100,style=1)" width="200px;float:left;" color=white SIZE=1></li>  
+                    
+                  </ul>
+                    
+           
+              <p class="view" style="font-size: 20px;font-weight: 100;line-height: 1.5; margin-top: 20px;">Autoproclamé «plus petit café de Paris», ce coffee shop installé dès février dans une ancienne cordonnerie du Marais a tout du repaire à hipster: specialty coffee (le café spécialisé) de la Brûlerie de Belleville (en expresso ou en Chemex), déco brute et carrelage métro du meilleur effet, magazines pointus sur les étagères, et douceurs US Emperor Norton sur le bar. Deux tables et un petit comptoir sur place seulement, le must étant de commander son café «to go», précis comme la phrase détournée «This coffee is made for walking» inscrite sur la vitrine. s</p>
+          </div>
+        </div>
+    </div>
+
+    <!-- <div class="wrap">
+      <div class="modal-container"> -->
+        <!-- <button class="modal-button" id="bt" value="display" >Click Here</button> -->
+        <div class="container" style="transform: scale(0.4,0.4); margin-top: 50px;">
+          <input type="checkbox" id="btn"/>
+          <label for="btn" id="red-circle-btn"></label>
+          <!-- <div class="time">
+            <div class="h_m"></div>
+            <div class="s_ms"></div>
+          </div>        -->
+        </div>     
+        <div style="text-align: center; color: white; margin-top: 90px; ">
+          <h2 style="font-style:italic;">Click here to start you recording</h2>
+        </div>
+  
+    <div id="test-popup" class="white-popup mfp-hide">
+      <div>
+          
+          <video id="recording" width="90%" style="padding-left:5%;" controls></video>
+          <button id="downloadButton" style="width: 100%;
+          height: 60px;
+          line-height: 30px;
+          font-size: 20px;
+          margin-top: 30px;
+          border: 1px solid #34AFFC;
+          color: #34AFFC;
+          background-color: transparent;
+          border-radius: 30px;
+          margin-left: 5%;
+          width: 90%;" >Download </button>
+      </div>
+      <div class="bottom">
+          <pre id="log" style="color:#34AFFC; margin-top: 10px; margin-left: 5%; width: 50px;"></pre>
+      </div>   
+    </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='http://code.jquery.com/jquery-2.2.4.min.js'></script>
+  <script src='http://cdn.jsdelivr.net/jquery.magnific-popup/1.0.0/jquery.magnific-popup.min.js'></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script> -->
+  <script src='https://isuttell.github.io/sine-waves/javascripts/sine-waves.min.js'></script>
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
+  <script src="{{ url_for('static', filename='timer.js') }}"></script>
+  
+</body>
+</html>

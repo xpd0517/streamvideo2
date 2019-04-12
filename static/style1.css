@@ -1,0 +1,19 @@
+body {
+  background: #F7F7F7;
+  margin: 0;
+  padding: 0;
+}
+
+#preview {
+ 
+  width: 25%;
+  height: 30%;
+  
+  background: black;
+  
+ 
+  box-shadow: 0 1px 10px black;
+  position: fixed;
+  right: 15px;
+  top: 20px;
+}
